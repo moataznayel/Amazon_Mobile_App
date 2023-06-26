@@ -6,7 +6,7 @@ const FilterByBrand = () => {
   let [brands, setBrands] = useState([]);
   const { params } = useRoute();
   const { navigate } = useNavigation();
-  console.warn(params);
+  // console.warn(params);
   useEffect(() => {
     //filter return brandes by api
     let brandByApi = params.products.map((e, i) => e.brand);

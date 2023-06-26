@@ -10,7 +10,7 @@ const Mobiles = () => {
   //store the all product by get api and result filter
   const [products, setProducts] = useState([]);
   const { params } = useRoute();
-  console.warn(params);
+  // console.warn(params);
   const monthNames = [
     "Jan",
     "Feb",
