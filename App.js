@@ -10,6 +10,11 @@ import Shirts from "./screen/shirts/Shirts";
 import Card from "./components/Card";
 import { Provider } from "react-redux";
 import store from "./storeByRedux/store/store";
+import Lighting from "./screen/lighting/Lighting";
+import Watches from "./screen/watches/Watches";
+import Jewellery from "./screen/jewellery/Jewellery";
+import Dresses from "./screen/dresses/Dresses";
+import Shoes from "./screen/shoes/Shoes";
 const Stack = createNativeStackNavigator();
 export default function App() {
   return (
@@ -19,7 +24,12 @@ export default function App() {
           <Stack.Screen name="home" component={Home} />
           <Stack.Screen name="mobiles" component={Mobiles} />
           <Stack.Screen name="laptops" component={Laptop} />
+          <Stack.Screen name="lighting" component={Lighting} />
+          <Stack.Screen name="watches" component={Watches} />
+          <Stack.Screen name="jewellery" component={Jewellery} />
           <Stack.Screen name="shirts" component={Shirts} />
+          <Stack.Screen name="dresses" component={Dresses} />
+          <Stack.Screen name="shoes" component={Shoes} />
           <Stack.Screen name="card" component={Card} />
           <Stack.Screen
             name="brand"

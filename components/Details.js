@@ -1,16 +1,6 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
 import React from "react";
-import {
-  View,
-  StyleSheet,
-  Image,
-  Text,
-  ScrollView,
-  FlatList,
-  Animated,
-} from "react-native";
-import AwesomeAlert from "react-native-awesome-alerts";
-
+import { View, StyleSheet, Image, Text, ScrollView } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import Iconlocation from "react-native-vector-icons/EvilIcons";
 import IconArrow from "react-native-vector-icons/MaterialIcons";
@@ -18,25 +8,27 @@ import SelectDropdown from "react-native-select-dropdown";
 import { Pressable } from "react-native";
 import { Table, Rows } from "react-native-table-component";
 import { useState } from "react";
-import SlideItem from "./carousel/SlideItem";
 import { changeCart } from "../storeByRedux/action/changeCart";
 import { useDispatch, useSelector } from "react-redux";
 import { Alert } from "react-native";
 import Swal from "sweetalert2";
+import usePrice from "../customHook/usePrice";
+
 const Details = () => {
   const { params } = useRoute();
   // console.warn(params.images);
   let [quantity, setQuantity] = useState(1);
-  console.warn(quantity);
+  // console.warn(quantity);
   let x = params.images.map((img) => img);
   // console.warn(x);
   let dispatch = useDispatch();
   let { navigate } = useNavigation();
   const cart = useSelector((state) => state.cart.cart);
-  console.warn(cart);
-  let price = params.price.toString().split("");
-  price.splice(1, 0, ",");
-  //   console.warn(price.join(""));
+  // console.warn(cart);
+  let price = usePrice(params.price);
+
+  // console.warn(price);
+
   let dropDown = [];
   for (var i = 1; i <= params.stock; i++) {
     dropDown.push(i);
@@ -56,16 +48,13 @@ const Details = () => {
     ["Ships from", "Amazon.eg"],
     ["Sold by", "Amazon.eg"],
   ]);
-  let data = params.images.map(function (value) {
-    return { img: value };
-  });
+
   let addToCard = (prd) => {
     const result = cart.some((obj) => obj.id === prd.id);
     const resultStock = cart.some(
       (obj) => obj.id === prd.id && obj.stock >= quantity
     );
-    // console.log(result);
-    // console.log(resultStock);
+
     if (result) {
       resultStock
         ? dispatch(
@@ -80,12 +69,7 @@ const Details = () => {
               }),
             ])
           )
-        : // Swal.fire({
-          //     icon: "error",
-          //     title: "Oops...",
-          //     text: "The quantity is not available",
-          //   });
-          Alert.alert("The quantity is not available");
+        : Alert.alert("The quantity is not available");
     } else {
       if (prd.stock >= quantity) {
         dispatch(
@@ -99,23 +83,12 @@ const Details = () => {
           ])
         );
       } else {
-        // Swal.fire({
-        //   icon: "error",
-        //   title: "Oops...",
-        //   text: `Available ${prd.state} items in stock`,
-        // });
         Alert.alert("Cancel Pressed");
       }
     }
   };
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      {/* <FlatList
-        data={data}
-        renderItem={({ item }) => <SlideItem item={item} />}
-        horizontal
-        pagingEnabled
-      /> */}
       <View
         style={{
           flexDirection: "row",
@@ -163,7 +136,7 @@ const Details = () => {
         }}
       >
         <Text style={{ fontSize: 20 }}>EGP</Text>
-        <Text style={{ fontSize: 40, fontWeight: "bold" }}>{price}0</Text>
+        <Text style={{ fontSize: 40, fontWeight: "bold" }}>{price}</Text>
         <Text style={{ fontSize: 20 }}>00</Text>
       </View>
       <>
@@ -325,8 +298,7 @@ const Details = () => {
           navigate("card");
         }}
       >
-        <Text>ss</Text>
-        <Text style={{ textAlign: "center" }}>category</Text>
+        <Text style={{ textAlign: "center" }}>cart</Text>
       </Pressable>
     </ScrollView>
   );

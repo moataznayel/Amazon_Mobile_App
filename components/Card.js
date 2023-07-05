@@ -13,12 +13,15 @@ import Icon from "react-native-vector-icons/AntDesign";
 import IconDelete from "react-native-vector-icons/MaterialCommunityIcons";
 import IconPlus from "react-native-vector-icons/Entypo";
 import { changeCart } from "../storeByRedux/action/changeCart";
+import usePrice from "../customHook/usePrice";
 
 const Card = () => {
   let [product, setProduct] = useState([]);
   let allProduct = useSelector((state) => state.cart.cart);
   let [totalPrice, setTotalPrice] = useState(0);
   let [totalItem, setTotalItem] = useState(0);
+  let pipetotalPrice = usePrice(totalPrice);
+
   let dispatch = useDispatch();
   let handleDelete = (id) => {
     let filter = product.filter((prd) => prd.id !== id);
@@ -52,6 +55,7 @@ const Card = () => {
         .map((x) => x.order)
         .reduce((fristPrd, NextPrd) => fristPrd + NextPrd);
       setTotalItem(item);
+
       let price = product
         .map((x) => x.price * x.order)
         .reduce((fristPrd, NextPrd) => fristPrd + NextPrd);
@@ -76,7 +80,7 @@ const Card = () => {
             </Text>
             <Text style={{ fontWeight: "bold" }}>EGP</Text>
             <Text style={{ fontSize: 25, fontWeight: "bold" }}>
-              {totalPrice}
+              {pipetotalPrice}
             </Text>
             <Text style={{ fontWeight: "bold" }}>00</Text>
           </View>

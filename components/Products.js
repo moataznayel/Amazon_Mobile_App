@@ -24,8 +24,14 @@ const Products = ({ products }) => {
   return (
     <View>
       {products.map((prd) => {
-        let price = prd.price.toString().split("");
-        price.splice(2, 0, ",");
+        let price;
+        if (prd.price >= 1000) {
+          price = prd.price.toString().split("");
+          price.splice(1, 0, ",");
+        } else {
+          price = prd.price;
+        }
+
         return (
           <Pressable
             onPress={() => {
