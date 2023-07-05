@@ -1,3 +1,4 @@
+
 import { ScrollView, StyleSheet, Text, View, SafeAreaView } from "react-native";
 import Mobiles from "./screen/mobiles/mobiles";
 import FilterByBrand from "./components/FilterByBrand";
@@ -47,3 +48,4 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({});
+
