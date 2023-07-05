@@ -1,6 +1,16 @@
-import { useRoute } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import React from "react";
-import { View, StyleSheet, Image, Text, ScrollView } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Image,
+  Text,
+  ScrollView,
+  FlatList,
+  Animated,
+} from "react-native";
+import AwesomeAlert from "react-native-awesome-alerts";
+
 import Icon from "react-native-vector-icons/FontAwesome";
 import Iconlocation from "react-native-vector-icons/EvilIcons";
 import IconArrow from "react-native-vector-icons/MaterialIcons";
@@ -8,10 +18,22 @@ import SelectDropdown from "react-native-select-dropdown";
 import { Pressable } from "react-native";
 import { Table, Rows } from "react-native-table-component";
 import { useState } from "react";
-
+import SlideItem from "./carousel/SlideItem";
+import { changeCart } from "../storeByRedux/action/changeCart";
+import { useDispatch, useSelector } from "react-redux";
+import { Alert } from "react-native";
+import Swal from "sweetalert2";
 const Details = () => {
   const { params } = useRoute();
-  //   console.warn(x);
+  // console.warn(params.images);
+  let [quantity, setQuantity] = useState(1);
+  console.warn(quantity);
+  let x = params.images.map((img) => img);
+  // console.warn(x);
+  let dispatch = useDispatch();
+  let { navigate } = useNavigation();
+  const cart = useSelector((state) => state.cart.cart);
+  console.warn(cart);
   let price = params.price.toString().split("");
   price.splice(1, 0, ",");
   //   console.warn(price.join(""));
@@ -34,9 +56,66 @@ const Details = () => {
     ["Ships from", "Amazon.eg"],
     ["Sold by", "Amazon.eg"],
   ]);
-
+  let data = params.images.map(function (value) {
+    return { img: value };
+  });
+  let addToCard = (prd) => {
+    const result = cart.some((obj) => obj.id === prd.id);
+    const resultStock = cart.some(
+      (obj) => obj.id === prd.id && obj.stock >= quantity
+    );
+    // console.log(result);
+    // console.log(resultStock);
+    if (result) {
+      resultStock
+        ? dispatch(
+            changeCart([
+              ...cart.map((ele) => {
+                if (ele.id === prd.id) {
+                  ele.order = ele.order + quantity;
+                  ele.stock = ele.stock - quantity;
+                  return ele;
+                }
+                return ele;
+              }),
+            ])
+          )
+        : // Swal.fire({
+          //     icon: "error",
+          //     title: "Oops...",
+          //     text: "The quantity is not available",
+          //   });
+          Alert.alert("The quantity is not available");
+    } else {
+      if (prd.stock >= quantity) {
+        dispatch(
+          changeCart([
+            ...cart,
+            {
+              ...params,
+              stock: params.stock - quantity,
+              order: quantity,
+            },
+          ])
+        );
+      } else {
+        // Swal.fire({
+        //   icon: "error",
+        //   title: "Oops...",
+        //   text: `Available ${prd.state} items in stock`,
+        // });
+        Alert.alert("Cancel Pressed");
+      }
+    }
+  };
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+      {/* <FlatList
+        data={data}
+        renderItem={({ item }) => <SlideItem item={item} />}
+        horizontal
+        pagingEnabled
+      /> */}
       <View
         style={{
           flexDirection: "row",
@@ -110,7 +189,7 @@ const Details = () => {
             Deliver to Egypt
           </Text>
         </View>
-        <Text style={{ color: "#007600", fontSize: 22 }}>In Stock</Text>
+        <Text style={{ color: "#007600", fontSize: 24 }}>In Stock</Text>
         <SelectDropdown
           defaultValue="dd"
           buttonStyle={{
@@ -136,7 +215,7 @@ const Details = () => {
           }}
           data={dropDown}
           onSelect={(selectedItem, index) => {
-            console.warn(selectedItem);
+            setQuantity(selectedItem);
           }}
           buttonTextAfterSelection={(selectedItem, index) => {
             return `Qty:${selectedItem}`;
@@ -153,6 +232,9 @@ const Details = () => {
               borderColor: pressed ? "#007600" : "white",
             },
           ]}
+          onPress={() => {
+            addToCard(params);
+          }}
         >
           <Text style={styles.btnText}>Add to Cart</Text>
         </Pressable>
@@ -185,6 +267,67 @@ const Details = () => {
           Yes,I want FREE Shopping with Amation Prime
         </Text>
       </View>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-around",
+          borderTopWidth: 1,
+          borderTopColor: "#ddd",
+          paddingVertical: 10,
+          borderBottomWidth: 1,
+          borderBottomColor: "#ddd",
+        }}
+      >
+        <View style={{ width: "24%", alignItems: "center" }}>
+          <Image
+            source={require("../assets/images/icon-cod._CB638858551_.png")}
+            style={{ width: 50, height: 50 }}
+          />
+          <Text style={{ textAlign: "center" }}>Cash on Delivery</Text>
+        </View>
+        <View style={{ width: "24%", alignItems: "center" }}>
+          <Image
+            source={require("../assets/images/icon-returns._CB403797073_.png")}
+            style={{ width: 50, height: 50 }}
+          />
+          <Text style={{ textAlign: "center" }}>15 days Returnable</Text>
+        </View>
+        <View style={{ width: "24%", alignItems: "center" }}>
+          <Image
+            source={require("../assets/images/trust_icon_free_shipping_81px._CB590597072_.png")}
+            style={{ width: 50, height: 50 }}
+          />
+          <Text style={{ textAlign: "center" }}>Free Delivery</Text>
+        </View>
+        <View
+          style={{
+            width: "24%",
+
+            alignItems: "center",
+          }}
+        >
+          <Image
+            source={require("../assets/images/icon-amazon-delivered._CB403797073_.png")}
+            style={{ width: 50, height: 50 }}
+          />
+          <Text style={{ textAlign: "center" }}>Delivered by Amazon</Text>
+        </View>
+      </View>
+      <Pressable
+        style={{
+          backgroundColor: "#ddd",
+          padding: 50,
+          marginTop: 50,
+          borderRadius: 20,
+          marginHorizontal: 15,
+        }}
+        onPress={() => {
+          navigate("card");
+        }}
+      >
+        <Text>ss</Text>
+        <Text style={{ textAlign: "center" }}>category</Text>
+      </Pressable>
     </ScrollView>
   );
 };

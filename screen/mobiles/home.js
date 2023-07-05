@@ -1,6 +1,8 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { View, StyleSheet, Text, Pressable } from "react-native";
+import Slider from "../../components/carousel/Slider";
+import Carousel from "../../components/carousel/tast";
 
 const Home = () => {
   const { navigate } = useNavigation();
@@ -16,11 +18,14 @@ const Home = () => {
           marginHorizontal: 15,
         }}
         onPress={() => {
-          navigate("mobiles");
+          navigate("laptops");
         }}
       >
+        <Text>ss</Text>
         <Text style={{ textAlign: "center" }}>category</Text>
       </Pressable>
+      {/* <Slider /> */}
+      {/* <Carousel /> */}
     </View>
   );
 };

@@ -31,8 +31,9 @@ const Products = ({ products }) => {
             onPress={() => {
               navigate("details", prd);
             }}
+            key={prd.id}
           >
-            <View key={prd.id} style={styles.container}>
+            <View style={styles.container}>
               <View style={{ flex: 2 }}>
                 <Image
                   source={{ uri: prd.thumbnail }}
@@ -46,7 +47,12 @@ const Products = ({ products }) => {
                 />
               </View>
               <View style={styles.content}>
-                <Text style={{ fontWeight: 500 }}>{prd.description}</Text>
+                <Text
+                  style={{ fontWeight: 400, color: "#3b3d3d" }}
+                  numberOfLines={3}
+                >
+                  {prd.description}
+                </Text>
                 <Text>
                   <Text style={{ color: "#007185" }}>
                     {prd.rating.toFixed(1)}{" "}
@@ -58,10 +64,10 @@ const Products = ({ products }) => {
                   <Icon name="star-half-empty" size={20} color="#ffa41c" />
                   <Text> ({prd.stock}) </Text>
                 </Text>
-                <View style={{ flexDirection: "row", fontWeight: 500 }}>
-                  <Text style={{ margin: 0 }}>EGP</Text>
-                  <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-                    {price}0
+                <View style={{ flexDirection: "row", fontWeight: "500" }}>
+                  <Text>EGP</Text>
+                  <Text style={{ fontSize: 20, fontWeight: "500" }}>
+                    {price}
                   </Text>
                   <Text>00</Text>
                 </View>
@@ -95,7 +101,7 @@ const styles = StyleSheet.create({
     // padding: 5,
     backgroundColor: "white",
     marginBottom: 8,
-    height: 200,
+    height: 170,
     borderWidth: 1,
     borderColor: "#ddd",
     borderRadius: 5,
