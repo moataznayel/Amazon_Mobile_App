@@ -1,19 +1,14 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import {
-  View,
-  StyleSheet,
-  Text,
-  TouchableWithoutFeedback,
-  Pressable,
-} from "react-native";
+import { View, StyleSheet, Text, Pressable } from "react-native";
 import Icon from "react-native-vector-icons/AntDesign";
 import IconDown from "react-native-vector-icons/Entypo";
+import filterStyle from "./filterStyle";
 const Filter = ({ products, route }) => {
   const { navigate } = useNavigation();
 
   return (
-    <View style={styles.container}>
+    <View style={filterStyle.container}>
       <Text style={{ fontWeight: "bold" }}>Over 70,000 result in El...</Text>
       <View style={{ flexDirection: "row" }}>
         <Pressable
@@ -21,9 +16,7 @@ const Filter = ({ products, route }) => {
             navigate("brand", { products, route });
           }}
         >
-          <Text
-            style={{ fontWeight: "bold", color: "#007185", marginRight: 3 }}
-          >
+          <Text style={filterStyle.text}>
             Filter <Icon name="doubleright" size={10} color="#007185" />
           </Text>
         </Pressable>
@@ -34,17 +27,6 @@ const Filter = ({ products, route }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    marginHorizontal: 5,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: "#ddd",
-    borderRadius: 5,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 5,
-  },
-});
+const styles = StyleSheet.create({});
 
 export default Filter;

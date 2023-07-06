@@ -4,6 +4,7 @@ import Products from "../../components/Products";
 import Filter from "../../components/Filter";
 import { useRoute } from "@react-navigation/native";
 import useAxios from "../../customHook/useAxios";
+import styleScreenCategory from "../styleScreen/styleScreenCategory";
 const Jewellery = () => {
   const { params } = useRoute();
   let { productsOrginal, products } = useAxios(
@@ -11,17 +12,14 @@ const Jewellery = () => {
     params
   );
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+    <ScrollView
+      style={styleScreenCategory.container}
+      showsVerticalScrollIndicator={false}
+    >
       <Filter products={productsOrginal} route="jewellery" />
       <Products products={products} />
     </ScrollView>
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 12,
-    backgroundColor: "white",
-  },
-});
 
 export default Jewellery;

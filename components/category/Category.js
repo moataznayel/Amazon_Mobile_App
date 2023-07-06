@@ -1,46 +1,30 @@
 import React from "react";
-import { View, StyleSheet, Image, Text } from "react-native";
-
-import { Card, Button, Icon } from "@rneui/themed";
-const Category = (props) => {
-  console.warn(props);
+import { View, StyleSheet, Image, Text, ScrollView } from "react-native";
+import CategoryCard from "./CategoryCard";
+import categoryStyle from "./categoryStyle";
+const Category = () => {
+  const laptopImg = "../../assets/images/laptobs.jpg";
+  const mobileImg = "../../assets/images/mobile.jpg";
+  const shoesImg = "../../assets/images/sheos.jpg";
+  const shirtImg = "../../assets/images/shirts.jpg";
+  const watchImg = "../../assets/images/watch.jpg";
+  const JewelleryImg = "../../assets/images/Jewellery.jpg";
+  const lightingImg = "../../assets/images/2.jpg";
+  const dressesImg = "../../assets/images/dresses.png";
   return (
-    <View
-      style={styles.cart}
-      onPress={() => {
-        console.warn("does not work");
-      }}
-    >
-      <Text style={styles.title}>{props.title}</Text>
-      <Image
-        style={styles.image}
-        resizeMode="cover"
-        source={{
-          uri: "https://images.samsung.com/is/image/samsung/eg-fhd-t5300-ua43t5300auxeg-frontblack-254763456?$1300_1038_PNG$",
-        }}
-      />
-    </View>
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <View style={categoryStyle.contiener}>
+        <CategoryCard img={require(laptopImg)} route={"laptops"} />
+        <CategoryCard img={require(mobileImg)} route={"mobiles"} />
+        <CategoryCard img={require(watchImg)} route={"watches"} />
+        <CategoryCard img={require(lightingImg)} route={"lighting"} />
+        <CategoryCard img={require(dressesImg)} route={"dresses"} />
+        <CategoryCard img={require(shoesImg)} route={"shoes"} />
+        <CategoryCard img={require(JewelleryImg)} route={"jewellery"} />
+        <CategoryCard img={require(shirtImg)} route={"shirts"} />
+      </View>
+    </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  image: {
-    width: "100%",
-    height: 100,
-    // marginRight: 5,
-
-    // borderRadius: 50,
-  },
-  cart: {
-    width: "45%",
-    borderRadius: 15,
-    borderWidth: 3,
-    borderColor: "transparent",
-    marginBottom: 15,
-    padding: 10,
-    backgroundColor: "white",
-  },
-  title: {},
-});
 
 export default Category;

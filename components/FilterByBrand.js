@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { Pressable } from "react-native";
+import filterByBrandStyle from "./filterByBrandStyle";
 const FilterByBrand = () => {
   let [brands, setBrands] = useState([]);
   const { params } = useRoute();
@@ -19,27 +20,17 @@ const FilterByBrand = () => {
     navigate(params.route, brand);
   };
   return (
-    <View style={styles.container}>
+    <View style={filterByBrandStyle.container}>
       <View style={{ padding: 15 }}>
         <Text style={{ fontSize: 20, fontWeight: "bold" }}>Brand</Text>
         <View>
           {brands.length > 0 &&
             brands.map((brand, index) => (
-              <View
-                style={{
-                  backgroundColor: "#ffffff",
-                  padding: 15,
-                  marginVertical: 2,
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-                key={index}
-              >
+              <View style={filterByBrandStyle.card} key={index}>
                 <Text>{brand}</Text>
                 <Pressable
                   style={({ pressed }) => [
-                    styles.checkbox,
+                    filterByBrandStyle.checkbox,
                     {
                       backgroundColor: pressed ? "#007185" : "white",
                       borderColor: pressed ? "transparent" : "#ddd",
@@ -50,7 +41,7 @@ const FilterByBrand = () => {
                     handleFilter(brand);
                   }}
                 >
-                  <Text style={styles.text}></Text>
+                  <Text style={filterByBrandStyle.text}></Text>
                 </Pressable>
               </View>
             ))}
@@ -60,27 +51,5 @@ const FilterByBrand = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#f3f3f3",
-    height: "100%",
-  },
-  checkbox: {
-    height: 30,
-    width: 30,
-    borderWidth: 2,
-    borderRadius: 50,
-
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  text: {
-    width: 10,
-    height: 10,
-    borderRadius: 50,
-    backgroundColor: "white",
-  },
-});
 
 export default FilterByBrand;

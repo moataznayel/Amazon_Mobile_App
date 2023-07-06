@@ -1,27 +1,20 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import {
-  View,
-  StyleSheet,
-  ScrollView,
-  Text,
-  Pressable,
-  Image,
-} from "react-native";
+import { View, ScrollView, Text, Pressable, Image } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import Icon from "react-native-vector-icons/AntDesign";
 import IconDelete from "react-native-vector-icons/MaterialCommunityIcons";
 import IconPlus from "react-native-vector-icons/Entypo";
 import { changeCart } from "../storeByRedux/action/changeCart";
 import usePrice from "../customHook/usePrice";
+import cartStyle from "./cart.style";
 
-const Card = () => {
+const Cart = () => {
   let [product, setProduct] = useState([]);
   let allProduct = useSelector((state) => state.cart.cart);
   let [totalPrice, setTotalPrice] = useState(0);
   let [totalItem, setTotalItem] = useState(0);
   let pipetotalPrice = usePrice(totalPrice);
-
   let dispatch = useDispatch();
   let handleDelete = (id) => {
     let filter = product.filter((prd) => prd.id !== id);
@@ -55,7 +48,6 @@ const Card = () => {
         .map((x) => x.order)
         .reduce((fristPrd, NextPrd) => fristPrd + NextPrd);
       setTotalItem(item);
-
       let price = product
         .map((x) => x.price * x.order)
         .reduce((fristPrd, NextPrd) => fristPrd + NextPrd);
@@ -71,9 +63,12 @@ const Card = () => {
   }, [handleDelete, product]);
 
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+    <ScrollView
+      style={cartStyle.container}
+      showsVerticalScrollIndicator={false}
+    >
       {product.length >= 1 && (
-        <View style={{ marginVertical: 20 }}>
+        <View style={cartStyle.cardTotal}>
           <View style={{ flexDirection: "row", fontWeight: 500 }}>
             <Text style={{ fontSize: 25, fontWeight: "400", marginRight: 5 }}>
               Subtotal
@@ -97,7 +92,7 @@ const Card = () => {
           </Text>
           <Pressable
             style={({ pressed }) => [
-              styles.btn,
+              cartStyle.btn,
               {
                 backgroundColor: "#FBC02D",
                 opacity: pressed ? 0.7 : 1,
@@ -108,7 +103,7 @@ const Card = () => {
               console.warn("ok");
             }}
           >
-            <Text style={styles.btnText}>
+            <Text style={cartStyle.btnText}>
               Proceed to Buy ({totalItem} Item)
             </Text>
           </Pressable>
@@ -128,90 +123,34 @@ const Card = () => {
               }
 
               return (
-                <View
-                  key={prd.id}
-                  style={{
-                    backgroundColor: "#f7f9fa",
-                    marginBottom: 8,
-
-                    borderRadius: 5,
-                  }}
-                >
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      // padding: 5,
-                      height: 130,
-                    }}
-                  >
+                <View key={prd.id} style={cartStyle.cardProduct}>
+                  <View style={cartStyle.wrapProduct}>
                     <View style={{ flex: 3 }}>
                       <Image
                         source={{ uri: prd.thumbnail }}
-                        style={{
-                          resizeMode: "stretch",
-                          width: "100%",
-                          height: "100%",
-                          //borderBottomLeftRadius: 5,
-                          borderTopLeftRadius: 5,
-                        }}
+                        style={cartStyle.imgProduct}
                       />
                     </View>
-                    <View style={styles.content}>
-                      <Text
-                        numberOfLines={2}
-                        style={{
-                          fontWeight: 500,
-                          lineHeight: 19,
-                        }}
-                      >
+                    <View style={cartStyle.content}>
+                      <Text numberOfLines={2} style={cartStyle.description}>
                         {prd.description}
                       </Text>
 
-                      <View
-                        style={{
-                          flexDirection: "row",
-
-                          marginTop: 2,
-                        }}
-                      >
+                      <View style={cartStyle.wrapPrice}>
                         <Text style={{ fontWeight: "bold" }}>EGP</Text>
-                        <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-                          {price}
-                        </Text>
+                        <Text style={cartStyle.price}>{price}</Text>
                         <Text style={{ fontWeight: "bold" }}>00</Text>
                       </View>
                       <>
-                        <Text style={{ color: "#6c706e", fontWeight: 400 }}>
+                        <Text style={cartStyle.freeDelivery}>
                           Eligible for FREE delivery
                         </Text>
-                        <Text style={{ color: "#1B5E20", marginTop: 3 }}>
-                          In stock
-                        </Text>
+                        <Text style={cartStyle.stock}>In stock</Text>
                       </>
                     </View>
                   </View>
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      justifyContent: "space-around",
-                      marginVertical: 15,
-                      alignItems: "center",
-                      height: 35,
-                    }}
-                  >
-                    <View
-                      style={{
-                        width: "40%",
-                        backgroundColor: "white",
-                        flexDirection: "row",
-                        justifyContent: "space-between",
-                        borderWidth: 1,
-                        borderColor: "#DDD",
-                        borderRadius: 5,
-                        height: "100%",
-                        alignItems: "center",
-                      }}
-                    >
+                  <View style={cartStyle.wrapBtns}>
+                    <View style={cartStyle.wrapBtnIncrementAndDecrement}>
                       <Pressable
                         onPress={
                           prd.order > 1
@@ -219,15 +158,7 @@ const Card = () => {
                             : () => handleDelete(prd.id)
                         }
                       >
-                        <View
-                          style={{
-                            backgroundColor: "#ebedf0",
-                            paddingHorizontal: 10,
-                            height: "100%",
-
-                            justifyContent: "center",
-                          }}
-                        >
+                        <View style={cartStyle.decrementAndDelete}>
                           {prd.order > 1 ? (
                             <Icon name="minus" size={20} />
                           ) : (
@@ -236,49 +167,24 @@ const Card = () => {
                         </View>
                       </Pressable>
                       <View>
-                        <Text style={styles.input}>{prd.order}</Text>
+                        <Text style={cartStyle.input}>{prd.order}</Text>
                       </View>
                       <Pressable
                         onPress={() => {
                           increment(prd.id);
                         }}
                       >
-                        <View
-                          style={{
-                            backgroundColor: "#ebedf0",
-                            paddingHorizontal: 10,
-                            height: "100%",
-                            justifyContent: "center",
-                          }}
-                        >
+                        <View style={cartStyle.btnIncrement}>
                           <IconPlus name="plus" size={20} />
                         </View>
                       </Pressable>
                     </View>
-                    <View
-                      style={{
-                        backgroundColor: "white",
-                        borderColor: "#DDD",
-                        borderWidth: 1,
-                        borderRadius: 10,
-                        height: "100%",
-                        justifyContent: "center",
-                      }}
-                    >
+                    <View style={cartStyle.btnDelete}>
                       <Pressable onPress={() => handleDelete(prd.id)}>
                         <Text style={{ paddingHorizontal: 10 }}>Delete</Text>
                       </Pressable>
                     </View>
-                    <View
-                      style={{
-                        backgroundColor: "white",
-                        borderColor: "#DDD",
-                        borderWidth: 1,
-                        borderRadius: 10,
-                        height: "100%",
-                        justifyContent: "center",
-                      }}
-                    >
+                    <View style={cartStyle.save}>
                       <Pressable>
                         <Text style={{ paddingHorizontal: 10 }}>
                           Save for later
@@ -291,19 +197,13 @@ const Card = () => {
             })}
           </>
         ) : (
-          <View style={{ marginTop: 20 }}>
+          <View style={cartStyle.emptyCard}>
             <Image
               source={require("../assets/images/cart-empty.png")}
-              style={{ width: "100%", height: 200 }}
+              style={cartStyle.emptyImage}
             />
-            <Text
-              style={{ textAlign: "center", fontWeight: "bold", fontSize: 20 }}
-            >
-              Your Amazon cart is empty
-            </Text>
-            <Text style={{ color: "#2c8695", textAlign: "center" }}>
-              Shop today's deals
-            </Text>
+            <Text style={cartStyle.emptyText}>Your Amazon cart is empty</Text>
+            <Text style={cartStyle.emptyBtn}>Shop today's deals</Text>
           </View>
         )}
       </>
@@ -311,32 +211,4 @@ const Card = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 10,
-    backgroundColor: "white",
-    marginBottom: 10,
-  },
-  btn: {
-    height: 60,
-    justifyContent: "center",
-    borderRadius: 10,
-    borderWidth: 3,
-    marginTop: 10,
-  },
-  btnText: {
-    textAlign: "center",
-    fontWeight: "bold",
-    fontSize: 16,
-  },
-  content: {
-    padding: 5,
-
-    flex: 4,
-  },
-  input: {
-    color: "#007185",
-  },
-});
-
-export default Card;
+export default Cart;
