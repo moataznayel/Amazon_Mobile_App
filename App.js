@@ -1,10 +1,17 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import Navbar from './components/Navbar/Navbar';
+import Sign from './components/Sign/Sign';
+import LoginHome from './components/LoginHome/LoginHome';
+import { NavigationContainer } from '@react-navigation/native';
+
+
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Navbar/>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <NavigationContainer>
+        <Navbar/>
+      </NavigationContainer>
+    </SafeAreaView>
   );
 }
 
@@ -12,14 +19,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width:"500px"
   },
-  navbar:{
-    flex:1,
-    backgroundColor:"black",
-    alignItems: 'center',
-    justifyContent: 'center',
-  }
 });
+

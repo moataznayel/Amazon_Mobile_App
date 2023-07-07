@@ -6,7 +6,9 @@ import UserScreen from "../User/User";
 import CartScreen from "../Cart/Cart";
 import DetailsScreen from "../Details/Details";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { StyleSheet } from "react-native";
+import { SafeAreaView, StyleSheet } from "react-native";
+import LoginHome from "../LoginHome/LoginHome";
+import UserScreens from "./../User/User";
 
 const Tab = createBottomTabNavigator();
 const homeName = "home";
@@ -15,9 +17,8 @@ const cartName = "cart";
 const detailsName = "details";
 const Navbar = () => {
   return (
-    <NavigationContainer>
+    <SafeAreaView style={styles.container}>
       <Tab.Navigator
-        style={styles.container}
         initialRouteName={homeName}
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
@@ -29,8 +30,7 @@ const Navbar = () => {
               iconName = focused ? "person" : "person-outline";
             } else if (rn === cartName) {
               iconName = focused ? "cart" : "cart-outline";
-            }
-             else if (rn === detailsName) {
+            } else if (rn === detailsName) {
               iconName = focused ? "menu" : "menu-outline";
             }
             // You can return any component that you like here!
@@ -44,21 +44,23 @@ const Navbar = () => {
           style: { padding: 10, height: 70 },
         }}
       >
-        <Tab.Screen name={detailsName} component={DetailsScreen} />
-        <Tab.Screen name={cartName} component={CartScreen} />
-        <Tab.Screen name={userName} component={UserScreen} />
-        <Tab.Screen name={homeName} component={HomeScreen} />
+        <Tab.Screen name="details" component={DetailsScreen} />
+        <Tab.Screen name="cart" component={CartScreen} />
+        <Tab.Screen
+          name="user"
+          component={UserScreens}
+          options={{ headerShown: false }}
+        />
+        <Tab.Screen name="home" component={HomeScreen} />
       </Tab.Navigator>
-    </NavigationContainer>
+    </SafeAreaView>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "black",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: "#fff",
+
   },
 });
 export default Navbar;
