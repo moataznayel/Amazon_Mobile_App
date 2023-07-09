@@ -13,18 +13,23 @@ import {
 } from "native-base";
 import * as React from "react";
 import { Pressable, StyleSheet } from "react-native";
-import auth from '@react-native-firebase/auth';
+// import auth from '@react-native-firebase/auth';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+
+import { auth } from "../Firebase/Firebase";
 
 const SignUpComponent = ({ navigation }) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  const handleSignUp = () => {
-    auth
-      .createUserWithEmailAndPassword(email, password)
+  const handleSignUp = ({ navigation }) => {
+    createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user.email);
+        if (user.emailVerified) {
+          navigation.navigate("home");
+        }
       })
       .catch((error) => console.log(error));
   };
@@ -54,7 +59,7 @@ const SignUpComponent = ({ navigation }) => {
         <VStack space={2} mt="5" width="250">
           <FormControl>
             <FormControl.Label>Email</FormControl.Label>
-            <Input value={email} onChangeText={e => setEmail(e)}/>
+            <Input value={email} onChangeText={(e) => setEmail(e)} />
           </FormControl>
           <FormControl>
             <FormControl.Label>Password</FormControl.Label>
@@ -62,7 +67,11 @@ const SignUpComponent = ({ navigation }) => {
           </FormControl>
           <FormControl>
             <FormControl.Label>Confirm Password</FormControl.Label>
-            <Input type="password" value={password} onChangeText={e => setPassword(e)}/>
+            <Input
+              type="password"
+              value={password}
+              onChangeText={(e) => setPassword(e)}
+            />
           </FormControl>
           <Button mt="2" bgColor="#f8da17" onPress={handleSignUp}>
             <Text>Sign in</Text>
