@@ -7,15 +7,18 @@ import CartScreen from "../Cart/Cart";
 import DetailsScreen from "../Details/Details";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { StyleSheet } from "react-native";
+import Home from "../../screen/mobiles/home";
+import Mobiles from "../../screen/mobiles/mobiles";
 
 const Tab = createBottomTabNavigator();
-const homeName = "home";
+
+const homeName = "home2";
 const userName = "user";
 const cartName = "cart";
 const detailsName = "details";
 const Navbar = () => {
   return (
-    <NavigationContainer>
+    <>
       <Tab.Navigator
         style={styles.container}
         initialRouteName={homeName}
@@ -48,8 +51,14 @@ const Navbar = () => {
         <Tab.Screen name={cartName} component={CartScreen} />
         <Tab.Screen name={userName} component={UserScreen} />
         <Tab.Screen name={homeName} component={HomeScreen} />
+
+
       </Tab.Navigator>
-    </NavigationContainer>
+      {/* <Stack.Navigator>
+      <Stack.Screen name="home" component={Home} />
+      <Stack.Screen name="mobiles" component={Mobiles} />
+      </Stack.Navigator> */}
+      </>
   );
 };
 
@@ -60,5 +69,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  
 });
 export default Navbar;

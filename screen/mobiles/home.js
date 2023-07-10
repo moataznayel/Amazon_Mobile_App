@@ -1,11 +1,15 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { View, StyleSheet, Text, Pressable } from "react-native";
+import { View, StyleSheet, Text, Pressable, TextInput } from "react-native";
+import Heder from "../../components/Header/Heder";
+import routes from '../../common/routes';
+import Navbar from "../../components/Navbar/Navbar";
 
 const Home = () => {
   const { navigate } = useNavigation();
   return (
     <View>
+       <Heder/>
       <Text>home</Text>
       <Pressable
         style={{
@@ -16,11 +20,12 @@ const Home = () => {
           marginHorizontal: 15,
         }}
         onPress={() => {
-          navigate("mobiles");
+          navigate('mobiles');
         }}
       >
         <Text style={{ textAlign: "center" }}>category</Text>
       </Pressable>
+
     </View>
   );
 };
