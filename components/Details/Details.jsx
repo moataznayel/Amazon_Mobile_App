@@ -6,6 +6,7 @@ const DetailsScreen = () => {
   return (
     <View>
       <Text>Details</Text>
+      
       {/* <CatCard/> */}
     </View>
   )
