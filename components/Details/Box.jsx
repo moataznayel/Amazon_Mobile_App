@@ -1,33 +1,33 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
 
-const Box = () => {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Prime</Text>
-      <View style={styles.circle}></View>
-      <Image
-        style={styles.img}
-        source={require("../../assets/logistics.png")}
-      ></Image>
-    </View>
-  );
+const Box = ({ data }) => {
+  return data.map((item, index) => {
+    return (
+      <View style={styles.container} key={index}>
+        <Text style={styles.text}>{item.name}</Text>
+        <View style={styles.circle}></View>
+        <Image style={styles.img} source={{ uri: item.img }}></Image>
+      </View>
+    );
+  });
 };
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
-    height: 200,
-    width: 200,
+    height: 180,
+    width: "48%",
     overflow: "hidden",
     borderRadius: 5,
   },
   circle: {
     backgroundColor: "#afe2e0",
     height: 200,
-    width: 200,
+    width: "100%",
     position: "absolute",
     bottom: -100,
-    borderRadius: 100,
+    borderRadius: 200,
   },
   text: {
     marginHorizontal: 10,
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     height: 100,
     width: 100,
     position: "absolute",
-    left: "25%",
+    left: "22%",
     top: "40%",
   },
 });

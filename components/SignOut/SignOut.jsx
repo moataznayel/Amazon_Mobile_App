@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { auth } from "../Firebase/Firebase";
 const SignOut = ({ navigation }) => {
@@ -13,7 +13,8 @@ const SignOut = ({ navigation }) => {
   };
   return (
     <View style={styles.container}>
-      <Text>Email: {auth.currentUser?.email}</Text>
+      <Image source={require("../../assets/user.png")} style={{width:70,height:70,marginBottom:30}}></Image>
+      <Text>{auth.currentUser?.email ||`User`}</Text>
       <TouchableOpacity onPress={handleSignOut} style={styles.button}>
         <Text style={styles.buttonText}>Sign out</Text>
       </TouchableOpacity>
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 50,
+    marginTop: 40,
   },
   buttonText: {
     color: "white",
