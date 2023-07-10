@@ -9,6 +9,8 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import { SafeAreaView, StyleSheet } from "react-native";
 import LoginHome from "../LoginHome/LoginHome";
 import UserScreens from "./../User/User";
+import Details from "../Details/Details";
+import DetailsHome from "../Details/DetailsHome";
 
 const Tab = createBottomTabNavigator();
 const homeName = "home";
@@ -44,7 +46,7 @@ const Navbar = () => {
           style: { padding: 10, height: 70 },
         }}
       >
-        <Tab.Screen name="details" component={DetailsScreen} />
+        <Tab.Screen name="details" component={DetailsHome} options={{ headerShown: false }}/>
         <Tab.Screen name="cart" component={CartScreen} />
         <Tab.Screen
           name="user"

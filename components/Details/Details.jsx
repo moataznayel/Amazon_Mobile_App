@@ -6,11 +6,10 @@ import {
   Image,
   Pressable,
 } from "react-native";
-// import {
-//   NativeBaseProvider,
-// } from "native-base";
+import { NativeBaseProvider } from "native-base";
 import React from "react";
 import Box from "./Box";
+import { LinearGradient } from "expo-linear-gradient";
 
 const DetailsScreen = ({ navigation }) => {
   const data = [
@@ -19,6 +18,11 @@ const DetailsScreen = ({ navigation }) => {
   ];
   return (
     <SafeAreaView style={styles.container}>
+            <LinearGradient
+        // Background Linear Gradient
+        colors={["#65c2d1", "transparent"]}
+        style={styles.background}
+      />
       <View
         style={{
           flexWrap: "wrap",
@@ -46,7 +50,7 @@ const DetailsScreen = ({ navigation }) => {
 };
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#eee",
+    backgroundColor: "#fff",
     flex: 1,
     paddingHorizontal: 10,
     paddingVertical: 10,
@@ -61,19 +65,31 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 10,
     borderRadius: 5,
-    shadowColor: "#444",
+    shadowColor: 'black',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity:  0.20,
+    shadowRadius: 3.05,
+    elevation: 5    
   },
   img: {
     height: 15,
     width: 15,
   },
+  background: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 0,
+    height: "100%",
+  },
 });
-// export default ({ navigation }) => {
-//   return (
-//     <NativeBaseProvider>
-//         <DetailsScreen navigation={navigation} />
-//     </NativeBaseProvider>
-//   );
-// };
-
-export default DetailsScreen;
+export default ({ navigation }) => {
+  return (
+    <NativeBaseProvider>
+      <DetailsScreen navigation={navigation} />
+    </NativeBaseProvider>
+  );
+};

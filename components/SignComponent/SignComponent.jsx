@@ -12,7 +12,7 @@ import {
   VStack,
 } from "native-base";
 import * as React from "react";
-import { Pressable } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../Firebase/Firebase";
 
@@ -32,8 +32,8 @@ const SignComponent = ({ navigation }) => {
     .catch((error) => alert(error.message));
   }
   return (
-    <Center w="100%" bgColor="#fff">
-      <Box safeArea py="10" w="90%" maxW="290" alignItems="center">
+    <Center style={styles.container}>
+      <Box safeArea py="10" w="90%" maxW="290" alignItems="center" >
         <Heading
           size="lg"
           color="coolGray.800"
@@ -105,7 +105,14 @@ const SignComponent = ({ navigation }) => {
     </Center>
   );
 };
-
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#fff",
+    flex:1,
+    width:"100%",
+    justifyContent:"flex-start"
+  },
+});
 export default ({ navigation }) => {
   console.log(navigation);
   return (

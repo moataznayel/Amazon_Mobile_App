@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     borderTopColor: "#eee",
     borderTopWidth:1,
-    flex:.2
+    flex:.2,
   },
 });
 export default Footer;

@@ -13,8 +13,11 @@ const SignOut = ({ navigation }) => {
   };
   return (
     <View style={styles.container}>
-      <Image source={require("../../assets/user.png")} style={{width:70,height:70,marginBottom:30}}></Image>
-      <Text>{auth.currentUser?.email ||`User`}</Text>
+      <Image
+        source={require("../../assets/user.png")}
+        style={styles.img}
+      ></Image>
+      <Text>{auth.currentUser?.email}</Text>
       <TouchableOpacity onPress={handleSignOut} style={styles.button}>
         <Text style={styles.buttonText}>Sign out</Text>
       </TouchableOpacity>
@@ -36,11 +39,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginTop: 40,
+    
   },
   buttonText: {
     color: "white",
-    fontWeight: "700",
+    fontWeight: 700,
     fontSize: 16,
+  },
+  img: {
+    width: 70,
+    height: 70,
+    marginBottom: 30,
   },
 });
 export default SignOut;

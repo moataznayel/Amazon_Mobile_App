@@ -20,9 +20,17 @@ const styles = StyleSheet.create({
     width: "48%",
     overflow: "hidden",
     borderRadius: 5,
+    shadowColor: 'black',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity:  0.20,
+    shadowRadius: 3.05,
+    elevation: 5
   },
   circle: {
-    backgroundColor: "#afe2e0",
+    backgroundColor: "#a5e3e1",
     height: 200,
     width: "100%",
     position: "absolute",

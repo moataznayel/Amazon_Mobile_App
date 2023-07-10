@@ -56,7 +56,7 @@ const SignUpComponent = ({ navigation }) => {
         >
           Sign Up!
         </Heading>
-        <VStack space={2} mt="5" width="250">
+        <VStack space={1} mt="5" width="250">
           <FormControl>
             <FormControl.Label>Email</FormControl.Label>
             <Input value={email} onChangeText={(e) => setEmail(e)} />
@@ -74,7 +74,7 @@ const SignUpComponent = ({ navigation }) => {
             />
           </FormControl>
           <Button mt="2" bgColor="#f8da17" onPress={handleSignUp}>
-            <Text>Sign in</Text>
+            <Text>Sign Up</Text>
           </Button>
           <HStack mt="6" justifyContent="center">
             <Text
@@ -91,7 +91,7 @@ const SignUpComponent = ({ navigation }) => {
                   color: "blue",
                 }}
               >
-                Sign in
+                Sign In
               </Text>
             </Pressable>
           </HStack>
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
     alignItems: "center",
-    marginTop: 50,
+    
   },
 });
 
