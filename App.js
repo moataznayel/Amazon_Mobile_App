@@ -26,6 +26,7 @@ import Dresses from "./screen/dresses/Dresses";
 import Shoes from "./screen/shoes/Shoes";
 import Cart from "./components/Cart";
 import Category from "./components/category/Category";
+import Root from './Navigation/root';
 export default function App() {
   const Stack = createNativeStackNavigator();
 
@@ -34,14 +35,11 @@ export default function App() {
 
           <Provider store={store}>
       <NavigationContainer>
+        <Root></Root>
        <Navbar/>
       </NavigationContainer>
     </Provider>
-  {/* <NavigationContainer>
-     <View style={styles.container}>
-      <Navbar/>
-    </View> 
-  </NavigationContainer> */}
+
   
     </>
   );
