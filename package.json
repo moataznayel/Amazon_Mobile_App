@@ -46,8 +46,7 @@
     "react-native-web": "~0.18.10",
     "react-redux": "^8.1.1",
     "redux": "^4.2.1",
-    "sweetalert2": "^11.7.12",
-    "fs-extra": "^10.0.1"
+    "sweetalert2": "^11.7.12"
 
   },
   "devDependencies": {
@@ -59,3 +58,4 @@
   "license": "ISC",
   "description": ""
 }
+
