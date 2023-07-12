@@ -2,15 +2,12 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import CatCard from '../cat-card/CatCard'
 import {
-  View,
-  Text,
   SafeAreaView,
   StyleSheet,
   Image,
   Pressable,
 } from "react-native";
 import { NativeBaseProvider } from "native-base";
-import React from "react";
 import Box from "./Box";
 import { LinearGradient } from "expo-linear-gradient";
 

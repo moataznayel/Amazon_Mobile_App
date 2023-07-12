@@ -17,7 +17,7 @@ const Tab = createBottomTabNavigator();
 const homeName = "home2";
 const userName = "user";
 const cartName = "cart";
-const detailsName = "details";
+const detailsName = "det";
 const Navbar = () => {
   return (
     <SafeAreaView style={styles.container}>
@@ -47,14 +47,18 @@ const Navbar = () => {
           style: { padding: 10, height: 70 },
         }}
       >
-        <Tab.Screen name="details" component={DetailsHome} options={{ headerShown: false }}/>
+        <Tab.Screen name="det" component={DetailsHome} options={{ headerShown: false }}/>
         <Tab.Screen name="cart" component={CartScreen} />
         <Tab.Screen
           name="user"
           component={UserScreens}
           options={{ headerShown: false }}
         />
-        <Tab.Screen name="home" component={HomeScreen} />
+        <Tab.Screen name="home2" component={HomeScreen}
+        options={{
+          headerShown:false
+        }}
+        />
       </Tab.Navigator>
     </SafeAreaView>
   );
