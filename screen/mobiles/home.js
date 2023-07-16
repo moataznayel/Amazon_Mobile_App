@@ -4,28 +4,20 @@ import { View, StyleSheet, Text, Pressable, TextInput } from "react-native";
 import Heder from "../../components/Header/Heder";
 import routes from '../../common/routes';
 import Navbar from "../../components/Navbar/Navbar";
-
+import { ScrollView, FlatList } from "react-native";
+import { Image} from "react-native";
+import { TouchableOpacity } from "react-native-web";
+import { useState } from "react";
+import Home1 from "../../Pages/Home"
 const Home = () => {
+
   const { navigate } = useNavigation();
   return (
     <View>
+      <ScrollView>
        <Heder/>
-      <Text>home</Text>
-      <Pressable
-        style={{
-          backgroundColor: "#ddd",
-          padding: 50,
-          marginTop: 50,
-          borderRadius: 20,
-          marginHorizontal: 15,
-        }}
-        onPress={() => {
-          navigate('mobiles');
-        }}
-      >
-        <Text style={{ textAlign: "center" }}>category</Text>
-      </Pressable>
-
+       <Home1/>
+      </ScrollView>
     </View>
   );
 };

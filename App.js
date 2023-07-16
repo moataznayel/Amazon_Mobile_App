@@ -22,14 +22,18 @@ import Shoes from "./screen/shoes/Shoes";
 import Cart from "./components/Cart";
 import Category from "./components/category/Category";
 import Root from './Navigation/root';
+import Navbar from './components/Navbar/Navbar';
 export default function App() {
   const Stack = createNativeStackNavigator();
 
   return (
+    <Provider store={store}>
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <NavigationContainer >
+         <Navbar/>
+     </NavigationContainer>
     </View>
+    </Provider>
   );
 }
 

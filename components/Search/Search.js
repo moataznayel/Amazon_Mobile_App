@@ -40,7 +40,29 @@ export default function Search() {
     setquery(text);
     search();
   };
+  
+  const navigateToProdcut = (cat) => {
+    var arr = [
+      "womens-jewellery",
+      "laptops",
+      "lighting",
+      "smartphones",
+      "mens-shirts",
+      "mens-shoes",
+      "sunglasses",
+      "womens-watches",
+      "womens-dresses",
+      "mens-watches"
+    ];
 
+
+    if (arr.includes(cat)) {
+      navigate(`${cat}`);
+
+    } else {
+      console.log("not found");
+    }
+  };
   return (
     <View>
       <View style={styles.seaechView}>
@@ -56,7 +78,7 @@ export default function Search() {
       </View>
 
       <View>
-        {resultSearch.map((to) => {
+        {resultSearch.map((item) => {
           if (resultSearch == []) {
             return (
               <View>
@@ -65,15 +87,15 @@ export default function Search() {
             );
           }
           return (
-            <View key={to.id}>
+            <View key={item.id}>
               <View>
                 <Pressable
                   onPress={() => {
-                    navigate("mobiles");
+                    navigateToProdcut(item.category);
                   }}
                   style={styles.searchItem}
                 >
-                  <Text>{to.title}</Text>
+                  <Text>{item.category}</Text>
                 </Pressable>
               </View>
             </View>
