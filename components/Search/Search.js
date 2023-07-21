@@ -8,8 +8,12 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import Feather from 'react-native-vector-icons/Feather';
 import axios from "axios";
+import SearchInput from '../Header1/SearchInput'
+
 
 export default function Search() {
   const { navigate } = useNavigation();
@@ -65,18 +69,28 @@ export default function Search() {
   };
   return (
     <View>
-      <View style={styles.seaechView}>
-        <TextInput
-          placeholder="Search"
-          onChangeText={(text) => {
-            handlesearch(text);
-          }}
-          autoFocus={true}
-          clearButtonMode="always"
-          style={styles.searchinput}
-        />
-      </View>
-
+  
+      <View style={styles.searchview}>
+        <View style={styles.inputBox} >
+          <View style={styles.row}>
+            <Ionicons name="search" size={22} color="#1f1f1f" />
+            <TextInput
+              placeholder="Search Amazon.in"
+              placeholderTextColor="#848484"
+              style={styles.textInput}
+              onChangeText={(text) => {
+                handlesearch(text);
+              }}
+              autoFocus={true}
+              clearButtonMode="always"
+              // onFocus={() => {navigate("search")}}
+            />
+          </View>
+          <AntDesign name="scan1" size={22} color="#909594" />
+        </View>
+        <Feather name="mic" size={20} color="#000000" />
+        </View>
+   {/* <SearchInput/> */}
       <View>
         {resultSearch.map((item) => {
           if (resultSearch == []) {
@@ -106,7 +120,14 @@ export default function Search() {
   );
 }
 const styles = StyleSheet.create({
-
+searchview:{
+  flexDirection:'row',
+ alignItems:'center',
+ justifyContent:'space-around',
+  backgroundColor:'#98e1d6',
+  paddingTop:6,
+  paddingBottom:10
+},
   seaechView: {
     flexDirection: "row-reverse",
     alignItems: "stretch",
@@ -136,5 +157,24 @@ const styles = StyleSheet.create({
     borderColor: "white",
     borderWidth: 0.5,
     paddingRight: 30,
+  },
+  inputBox: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#a1bcc0',
+    borderRadius: 8,
+    backgroundColor: '#FFFFFF',
+    width: '90%',
+    justifyContent: 'space-between',
+    paddingHorizontal: 10,
+    elevation: 5,
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  textInput: {
+    padding: 8,
   },
 });

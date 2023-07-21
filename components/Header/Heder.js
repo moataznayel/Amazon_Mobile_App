@@ -24,7 +24,7 @@ export default function Heder() {
             style={{ justifyContent: "flex-start", width: 100, height: 40 }}
             source={require("../../assets/images-header/Amazon-Emblem33.jpg")}
           ></Image>
-           <View style={{flexDirection:'row-reverse',alignItems:'baseline'}}>
+           <View style={{flexDirection:'row',alignItems:'baseline'}}>
            <Text style={{color:'white'}}>sign in</Text>
           <Ionicons name="ios-person" size={25}  color="white"/>
            </View>
@@ -66,7 +66,7 @@ export default function Heder() {
         </View>
 
         <Pressable style={{ backgroundColor: "gray", margin: 5 }}>
-          <View style={{ flexDirection: "row-reverse", padding: 10 }}>
+          <View style={{ flexDirection: "row", padding: 10 }}>
             <Image
               style={{width:25,height:25,marginLeft: 10 }}
               source={require("../../assets/images-header/location.png")}

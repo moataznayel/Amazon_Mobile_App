@@ -270,17 +270,17 @@ function Home1() {
           // initialScrollIndex={0}
           initialNumToRender={data.length}
           renderItem={({ item }) => (
-            <View style={{ margin: 10 }}>
+            <View style={{ margin: 10,justifyContent:'center',alignItems:'center' }}>
               <Image
                 source={{uri: item.image}}
                 style={{ width: 50, height: 50, borderRadius: 50 }}
               />
-              <Text style={{ textAlign: "center" }}>{item.text}</Text>
+              <Text style={{ alignSelf:'center' }}>{item.text}</Text>
             </View>
           )}
         />
       {/* </ScrollView> */}
-      <View style={styles.container}>
+      <View >
         <ScrollView
           horizontal
           pagingEnabled
@@ -311,7 +311,7 @@ function Home1() {
         data={cards}
         keyExtractor={(item) => item.id.toString()}
         showsHorizontalScrollIndicator={false}
-        style={styles.container}
+        style={[styles.container,{marginTop:-110}]}
         renderItem={({ item }) => (
           <Card title={item.title} image={item.image}></Card>
         )}
@@ -593,7 +593,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "transparent",
     marginVertical: 10,
-    marginHorizontal: 20,
+    marginHorizontal: 0,
     width: "auto",
   },
   title: {
@@ -627,15 +627,15 @@ const styles = StyleSheet.create({
     cursor: "pointer",
   },
   photoContainer: {
-    // width: 500,
+    // width: 700,
     // height: 500,
     alignItems: "center",
     justifyContent: "center",
   },
   photo: {
 
-    width: 350,
-    height: 240,
+    width: 392,
+    height: 300,
     resizeMode: "cover",
   },
   pagination: {

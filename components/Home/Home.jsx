@@ -48,7 +48,10 @@ const HomeScreen = () => {
         }}
       />
        <Stack.Screen name="details" component={Details} />
-      <Stack.Screen name="search" component={Search} />
+      <Stack.Screen name="search"   options={{
+          headerBackVisible:true,
+          headerTitle:''
+        }} component={Search} />
       <Stack.Screen name="category" component={Category} />
     </Stack.Navigator>
 </>
