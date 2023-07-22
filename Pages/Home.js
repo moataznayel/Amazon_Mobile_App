@@ -6,6 +6,7 @@ import { TouchableOpacity } from "react-native";
 import { useState } from "react";
 
 function Home1() {
+
   const data = [
     {
       id: 1,
@@ -254,6 +255,7 @@ function Home1() {
   ];
   const [currentIndex, setCurrentIndex] = useState(0);
   const width=10;
+
   const handleScroll = (event) => {
     const { contentOffset } = event.nativeEvent;
     const index = Math.round(contentOffset.x / width);
@@ -263,6 +265,7 @@ function Home1() {
     // <ScrollView alwaysBounceVertical>
     <View style={styles.Homecontainer}>
       {/* <ScrollView alwaysBounceVertical> */}
+
         <FlatList
           data={data}
           keyExtractor={(item) => item.id.toString()}
@@ -281,6 +284,7 @@ function Home1() {
         />
       {/* </ScrollView> */}
       <View >
+
         <ScrollView
           horizontal
           pagingEnabled
@@ -291,6 +295,7 @@ function Home1() {
           {PHOTOS.map((photo, index) => (
             <View key={photo.id} style={styles.photoContainer}>
               <Image source={{uri:photo.photo }} style={styles.photo} />
+
             </View>
           ))}
         </ScrollView>
@@ -312,6 +317,7 @@ function Home1() {
         keyExtractor={(item) => item.id.toString()}
         showsHorizontalScrollIndicator={false}
         style={[styles.container,{marginTop:-110}]}
+
         renderItem={({ item }) => (
           <Card title={item.title} image={item.image}></Card>
         )}
@@ -320,6 +326,7 @@ function Home1() {
         source={require("../assets/backGround2.png")}
         style={{
           width: 400,
+
           height: 70,
           marginBottom: 5,
           justifyContent: "center",
@@ -329,6 +336,7 @@ function Home1() {
         source={require("../assets/backGround3.jpg")}
         style={{
           width: 400,
+
           height: 70,
           justifyContent: "center",
         }}
@@ -341,6 +349,7 @@ function Home1() {
         style={styles.container}
         renderItem={({ item }) => (
           // <Image source={{uri:item.image}} style={styles.photo} />
+
           <Offer
             image={item.image}
             descriptionTitle={item.descriptionTitle}
@@ -356,11 +365,13 @@ function Home1() {
         <Text style={styles.title}>Deals For you in Jewllery</Text>
         <View style={styles.topCards}>
           <Offer2
+
             descriptionTitle="20% off"
             description="Prime Day deal"
             image="https://images-eu.ssl-images-amazon.com/images/I/41jKX4xDfJL._AC_UL600_SR600,400_.jpg"
           />
           <Offer2
+
             descriptionTitle="20% off"
             description="Prime Day deal"
             image="https://images-eu.ssl-images-amazon.com/images/I/61WieRlJzVL._AC_UL600_SR600,400_.jpg"
@@ -368,11 +379,13 @@ function Home1() {
         </View>
         <View style={styles.bottomCards}>
           <Offer2
+
             descriptionTitle="20% off"
             description="Prime Day deal"
             image="https://images-eu.ssl-images-amazon.com/images/I/615nFDLSn6L._AC_UL600_SR600,400_.jpghttps://m.media-amazon.com/images/I/51O1Cc+UUSL._AC_SY200_.jpg"
           />
           <Offer2
+
             descriptionTitle="20% off"
             description="Prime Day deal"
             image="https://images-eu.ssl-images-amazon.com/images/I/41HzgrROSdL._AC_UL600_SR600,400_.jpg"
@@ -389,11 +402,13 @@ function Home1() {
         <Text style={styles.title}>Deals For you in Men's clothing</Text>
         <View style={styles.topCards}>
           <Offer2
+
             descriptionTitle="20% off"
             description="Prime Day deal"
             image="https://m.media-amazon.com/images/I/51ZtQXIukfL._AC_UL600_FMwebp_QL65_.jpg"
           />
           <Offer2
+
             descriptionTitle="20% off"
             description="Prime Day deal"
             image="https://m.media-amazon.com/images/I/61cKGGvHlSL._AC_UL600_FMwebp_QL65_.jpg"
@@ -401,11 +416,13 @@ function Home1() {
         </View>
         <View style={styles.bottomCards}>
           <Offer2
+
             descriptionTitle="20% off"
             description="Prime Day deal"
             image="https://m.media-amazon.com/images/I/4195zwfmj8L._AC_UF226,226_FMjpg_.jpg"
           />
           <Offer2
+
             descriptionTitle="20% off"
             description="Prime Day deal"
             image="https://m.media-amazon.com/images/I/61vYpczCVCL._AC_UL600_FMwebp_QL65_.jpg"
@@ -424,11 +441,13 @@ function Home1() {
         </Text>
         <View style={styles.topCards}>
           <Offer2
+
             offer="Prime Day deal"
             descriptionTitle=""
             image="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/Events/2023/PD23/Partners/XCM_Manual_1589945_5685785_186x116_1X._SY116_CB602606500_.jpg"
           />
           <Offer2
+
             offer="Prime Day deal"
             descriptionTitle=""
             image="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/Events/2023/PD23/Partners/XCM_Manual_1589945_5685780_186x116_1X._SY116_CB602606500_.jpg"
@@ -436,11 +455,13 @@ function Home1() {
         </View>
         <View style={styles.bottomCards}>
           <Offer2
+
             offer="Prime Day deal"
             descriptionTitle=""
             image="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/Events/2023/PD23/Partners/XCM_Manual_1589945_5685786_186x116_1X._SY116_CB602606500_.jpg"
           />
           <Offer2
+
             offer="Prime Day deal"
             descriptionTitle=""
             image="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/Events/2023/PD23/Partners/XCM_Manual_1589945_5685781_186x116_1X._SY116_CB602606500_.jpg"
@@ -452,6 +473,7 @@ function Home1() {
       </ScrollView>
       <Image
         source={{uri:"https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2023/img/Musical_Instruments/XCM_Manual_1538906_5340979_1500x250_2X.jpg"}}
+
         style={{
           width: 500,
           height: 70,
@@ -461,6 +483,7 @@ function Home1() {
       ></Image>
       <Image
         source={{uri:"https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/Events/2023/PD23/GW/XCM_Manual_1599299_5709973_750x130_2X.jpg"}}
+
         style={{
           width: 500,
           height: 70,
@@ -475,6 +498,7 @@ function Home1() {
         showsHorizontalScrollIndicator={false}
         style={styles.container}
         renderItem={({ item }) => <Image style={{width:200 ,height:200}} source={{uri:item.image}}></Image>}
+
       ></FlatList>
       <ScrollView
         contentContainerStyle={styles.cardContainer}
@@ -483,11 +507,13 @@ function Home1() {
         <Text style={styles.title}>Deals For you in Women's clothing</Text>
         <View style={styles.topCards}>
           <Offer2
+
             descriptionTitle="20% off"
             description="Prime Day deal"
             image="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/SL/XCM_Manual_1323197_1661000_Egypt_SR_EG_CP_NT_SL_WomensClothingPage_WomenTops_3868463_440x440_en_AE.jpg"
           />
           <Offer2
+
             descriptionTitle="20% off"
             description="Prime Day deal"
             image="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/SL/XCM_Manual_1323197_1661000_Egypt_SR_EG_CP_NT_SL_WomensClothingPage_WomenEthnicWear_3868465_440x440_en_AE.jpg"
@@ -495,11 +521,13 @@ function Home1() {
         </View>
         <View style={styles.bottomCards}>
           <Offer2
+
             descriptionTitle="20% off"
             description="Prime Day deal"
             image="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/SL/XCM_Manual_1323197_1661000_Egypt_SR_EG_CP_NT_SL_WomensClothingPage_WomenDresses_3868467_440x440_en_AE.jpg"
           />
           <Offer2
+
             descriptionTitle="20% off"
             description="Prime Day deal"
             image="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/SL/XCM_Manual_1323197_1661000_Egypt_SR_EG_CP_NT_SL_WomensClothingPage_WomenShirt_3868466_440x440_en_AE.jpg"
@@ -516,11 +544,13 @@ function Home1() {
         <Text style={styles.title}>Deals For you in Electronics</Text>
         <View style={styles.topCards}>
           <Offer2
+
             descriptionTitle="20% off"
             description="Prime Day deal"
             image="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2022/img/Consumer_Electronics/Stores/1452930_EG_Headphones_440x300_EN_c64f615d-d919-4edf-b777-6094c1b5ac02.jpg"
           />
           <Offer2
+
             descriptionTitle="20% off"
             description="Prime Day deal"
             image="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2022/img/Consumer_Electronics/XCM_Manual_1486648_5076882_440x300_2X.jpg"
@@ -528,11 +558,13 @@ function Home1() {
         </View>
         <View style={styles.bottomCards}>
           <Offer2
+
             descriptionTitle="20% off"
             description="Prime Day deal"
             image="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2022/img/Consumer_Electronics/Stores/1452930_EG_Mobiles_Accessories_440x300_EN_f3461310-1871-48db-a32f-4673b59c324c.jpg"
           />
           <Offer2
+
             descriptionTitle="20% off"
             description="Prime Day deal"
             image="https://images-eu.ssl-images-amazon.com/images/G/42/Egypt-hq/2022/img/Consumer_Electronics/Stores/1452930_EG_Laptops_440x300_EN_199bfc26-758f-43fe-9f62-58827d1fbb07.jpg"
@@ -551,11 +583,13 @@ function Home1() {
         </Text>
         <View style={styles.topCards}>
           <Offer2
+
             offer="Prime Day deal"
             descriptionTitle=""
             image="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/Events/2023/PD23/GW/XCM_Manual_1587293_5684538_186x116_1X._SY116_CB602555655_.jpg"
           />
           <Offer2
+
             offer="Prime Day deal"
             descriptionTitle=""
             image="https://images-eu.ssl-images-amazon.com/images/G/42/Prime/MC_DQC_NoBadge_372x232._SY116_CB604707365_.jpg"
@@ -563,11 +597,13 @@ function Home1() {
         </View>
         <View style={styles.bottomCards}>
           <Offer2
+
             offer="Prime Day deal"
             descriptionTitle=""
             image="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/Events/2023/PD23/GW/XCM_Manual_1587293_5681839_186x116_1X._SY116_CB602257446_.jpg"
           />
           <Offer2
+
             offer="Prime Day deal"
             descriptionTitle=""
             image="https://images-eu.ssl-images-amazon.com/images/G/42/Sunrise/Events/2023/PD23/GW/XCM_Manual_1587293_5681841_186x116_1X._SY116_CB602257446_.jpg"
@@ -585,6 +621,7 @@ const styles = StyleSheet.create({
     flex: 1,
     // justifyContent: "center",
     // alignItems: "center",
+
     backgroundColor: "#E5E8EF",
   },
   container: {
@@ -594,6 +631,7 @@ const styles = StyleSheet.create({
     borderColor: "transparent",
     marginVertical: 10,
     marginHorizontal: 0,
+
     width: "auto",
   },
   title: {
@@ -614,6 +652,7 @@ const styles = StyleSheet.create({
 
     flexDirection: "row",
     
+
     marginBottom: 20,
   },
   bottomCards: {
@@ -629,6 +668,7 @@ const styles = StyleSheet.create({
   photoContainer: {
     // width: 700,
     // height: 500,
+
     alignItems: "center",
     justifyContent: "center",
   },
@@ -636,6 +676,7 @@ const styles = StyleSheet.create({
 
     width: 392,
     height: 300,
+
     resizeMode: "cover",
   },
   pagination: {
@@ -659,3 +700,4 @@ const styles = StyleSheet.create({
   },
 });
 export default Home1;
+
