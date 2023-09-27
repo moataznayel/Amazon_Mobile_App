@@ -1,7 +1,7 @@
 import React from "react";
 import { ScrollView, FlatList } from "react-native";
 import { View, Text, Image, StyleSheet } from "react-native";
-import { Card, Offer, Offer2 } from "../components/Card";
+import { Card, Offer, Offer2 } from "../Components/Card";
 import { TouchableOpacity } from "react-native";
 import { useState } from "react";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Image, Text, ScrollView } from "react-native";
+import { View, StyleSheet, Image, Text, ScrollView,Pressable } from "react-native";
 import CategoryCard from "./CategoryCard";
 import categoryStyle from "./categoryStyle";
 const Category = () => {
@@ -15,16 +15,49 @@ const Category = () => {
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={categoryStyle.contiener}>
         <CategoryCard img={require(laptopImg)} route={"laptops"} />
-        <CategoryCard img={require(mobileImg)} route={"mobiles"} />
-        <CategoryCard img={require(watchImg)} route={"watches"} />
+        <CategoryCard img={require(mobileImg)} route={"smartphones"} />
+        <CategoryCard img={require(watchImg)} route={"mens-watches"} />
         <CategoryCard img={require(lightingImg)} route={"lighting"} />
-        <CategoryCard img={require(dressesImg)} route={"dresses"} />
-        <CategoryCard img={require(shoesImg)} route={"shoes"} />
-        <CategoryCard img={require(JewelleryImg)} route={"jewellery"} />
-        <CategoryCard img={require(shirtImg)} route={"shirts"} />
+        <CategoryCard img={require(dressesImg)} route={"womens-dresses"} />
+        <CategoryCard img={require(shoesImg)} route={"mens-shoes"} />
+        <CategoryCard img={require(JewelleryImg)} route={"womens-jewellery"} />
+        <CategoryCard img={require(shirtImg)} route={"mens-shirts"} />
+
+        <Pressable style={styles.btn}>
+          <View style={styles.txtBtn}>
+            <Text>language</Text>
+          </View>
+        </Pressable>
+        <Pressable style={styles.btn}>
+          <View style={styles.txtBtn}>
+            <Text> location</Text>
+          </View>
+        </Pressable>
+        <Pressable style={styles.btn}>
+          <View style={styles.txtBtn}>
+               <Text>settings</Text>
+          </View>
+        </Pressable>
+
       </View>
     </ScrollView>
   );
 };
+const styles = StyleSheet.create({
+  btn:{width:'95%',
+  backgroundColor: "white",
+   margin: 5 ,
+   borderColor:'black' ,
+   borderWidth:1,
+   borderRadius:10,
+
+  },
+  txtBtn:{
+    padding: 10,
+    paddingLeft:20
+  },
+  
+});
+
 
 export default Category;

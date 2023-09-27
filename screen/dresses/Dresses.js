@@ -1,7 +1,7 @@
 import React from "react";
 import { ScrollView } from "react-native";
-import Products from "../../components/Products";
-import Filter from "../../components/Filter";
+import Products from "../../Components/Products";
+import Filter from "../../Components/Filter";
 import { useRoute } from "@react-navigation/native";
 import useAxios from "../../customHook/useAxios";
 import styleScreenCategory from "../styleScreen/styleScreenCategory";

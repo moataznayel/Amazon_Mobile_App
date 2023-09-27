@@ -211,20 +211,7 @@ const Details = () => {
           <Text style={{ textAlign: "center" }}>Delivered by Amazon</Text>
         </View>
       </View>
-      <Pressable
-        style={{
-          backgroundColor: "#ddd",
-          padding: 50,
-          marginTop: 50,
-          borderRadius: 20,
-          marginHorizontal: 15,
-        }}
-        onPress={() => {
-          navigate("cart");
-        }}
-      >
-        <Text style={{ textAlign: "center" }}>cart</Text>
-      </Pressable>
+     
     </ScrollView>
   );
 };

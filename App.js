@@ -6,7 +6,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Provider } from "react-redux";
 import store from "./storeByRedux/store/store";
 
-import Navbar from './components/Navbar/Navbar';
+import Navbar from './Components/Navbar/Navbar';
 export default function App() {
   const Stack = createNativeStackNavigator();
 
